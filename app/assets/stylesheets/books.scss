@@ -1,0 +1,30 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+img.book_index{
+  height: 250px;
+  width: 175px;
+}
+
+img.book_show{
+  height: 350px;
+  width: 250px;
+}
+
+div.col-md-3.top-padding{
+  padding-top: 30px;
+}
+
+div#new-book-form{
+  width: 50%;
+  input.btn.btn-default.col-md-offset-2{
+    margin-top: 10px;
+  }
+}
+
+div#add-review{
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+

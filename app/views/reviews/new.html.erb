@@ -1,0 +1,11 @@
+<% provide :title, '- new review' %>
+
+<h1>New Review</h1>
+
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>" role="alert">
+    <strong><%= message_type %>:</strong> <%= message %>
+  </div>
+<% end %>
+
+<%= render :partial => 'form' %>

@@ -1,0 +1,20 @@
+<% provide :title, "- edit #{@book[:title]}" %>
+
+<h1>Edit Book</h1>
+
+<%= form_for @book do |f| %>
+  <%= f.select(:category_id, @categories) %>
+
+  <%= f.file_field :book_img %>
+
+  <%= f.label :title, 'Book Title' %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, :size => '80x7' %>
+
+  <%= f.label :author %>
+  <%= f.text_field :author %>
+
+  <%= f.submit %>
+<% end %>

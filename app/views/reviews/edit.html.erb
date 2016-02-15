@@ -1,0 +1,22 @@
+<% provide :title, '- edit review' %>
+
+<h1>Edit Review</h1>
+
+<%= form_for [@book, @review] do |f| %>
+  <div id="rating-form">
+    <%= f.label :rating %>
+  </div>
+
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
+
+  <%= f.submit %>
+<% end %>
+
+
+<script>
+  $('#rating-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+</script>

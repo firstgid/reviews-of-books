@@ -1,0 +1,68 @@
+<% provide :title, " - #{@book[:title]}" %>
+
+<div class="row">
+
+  <div class="col-md-4">
+    <%= image_tag @book.book_img.url(:book_show), :class => "book_show" %>
+  </div >
+
+  <div class="col-md-8">
+    <h2><%= @book[:title] %></h2>
+    <h3><%= @book[:author] %></h3>
+    <h4>Average Rating:</h4>
+
+    <div class="average-review-rating" data-score=<%= @average_review %>></div>
+    <span>Based on <%= @book.reviews.count %> reviews.</span>
+    <p><%= @book[:description] %></p>
+
+    <div>
+      <% if user_signed_in? %>
+        <% if @book.user_id == current_user.id %>
+          <%= link_to 'Edit', edit_book_path(@book) %>
+          <%= link_to 'Delete', book_path(@book), :method => :delete,
+            :data => {confirm: 'Do you really want delete the Book?'}
+          %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+
+    <%= render @book.reviews %>
+
+    <% unless current_user.blank? %>
+      <div id="add-review">
+        <%= link_to "Add Review", new_book_review_path(@book) %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%= link_to 'Back', root_url %>
+
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+    });
+</script>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

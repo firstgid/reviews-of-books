@@ -1,0 +1,28 @@
+<% provide :title, '- Home' %>
+
+<h1 class="current-category"><%= params[:category] %></h1>
+
+<% if @books.size == 0 %>
+  <h2>Currently this category has not books.</h2>
+<% else %>
+  <div class="row">
+
+    <% @books.each_with_index do |book, i| %>
+
+      <% if i <= 3 %>
+        <div class="col-md-3">
+          <%= link_to image_tag(book.book_img.url(:book_index), :class => "book_index"),
+              "books/#{book.id}" %>
+        </div>
+
+      <% else %>
+        <div class="col-md-3 top-padding">
+          <%= link_to image_tag(book.book_img.url(:book_index), :class => "book_index"),
+              "books/#{book.id}" %>
+        </div>
+
+      <% end %>
+    <% end %>
+
+  </div>
+<% end%>
