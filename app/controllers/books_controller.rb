@@ -64,7 +64,7 @@ class BooksController < ApplicationController
     end
 
     def check_user!
-      unless current_user.id == @book.user_id
+      unless((current_user.id == @book.user_id) || (current_user.admin))
         redirect_to book_path(@book)
       end
     end

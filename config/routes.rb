@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
+  root 'books#index'
+
+  get 'admin/admin_panel' => 'admin#admin_panel', :as => :admin_panel
+
   devise_for :users
   resources :books do
     resources :reviews
   end
 
-  root 'books#index'
+  get 'admin/:user_id/change_user' => 'admin#change_user', :as => :change_user
+  patch 'admin/:user_id/change_user' => 'admin#updating_user'
+  delete 'admin/:user_id/change_user' => 'admin#deleting_user'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

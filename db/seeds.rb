@@ -26,7 +26,8 @@ math = Category.find_by(:name => 'Science & Math')
 User.create!([
   {:email => 'mcbride@example.com', :password => password},
   {:email => 'william@example.com', :password => password},
-  {:email => 'brian@example.com', :password => password}
+  {:email => 'brian@example.com', :password => password},
+  {:email => 'admin@admin.com', :password => 'Admin123', :admin => true}
 ])
 
 mcbride = User.first

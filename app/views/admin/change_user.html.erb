@@ -1,0 +1,14 @@
+<h1>Edit User: <%= @user[:email] %></h1>
+
+<%= form_for @user, url: {action: "change_user"} do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.text_field :password, autocomplete: "off" %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.text_field :password_confirmation, autocomplete: "off" %>
+
+  <%= f.submit %>
+<% end %>

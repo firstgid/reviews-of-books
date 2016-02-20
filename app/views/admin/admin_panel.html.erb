@@ -1,0 +1,64 @@
+<h1>Admin#admin_panel</h1>
+
+<div class="col-md-12">
+
+  <h2>Registered Users</h2>
+
+  <table class="col-md-6 admin-data">
+
+    <% @users.each do |user| %>
+      <% unless current_user == user %>
+
+        <tr>
+          <td class="col-md-4"><%= link_to user[:email], change_user_path(:user_id => user[:id])%></td>
+          <td class="col-md-2">Added books: <%= user.books.count %></td>
+          <td class="col-md-2">
+            <%= link_to "remove user #{user[:id]}", change_user_path(:user_id => user[:id]),
+                        {:method => 'delete', :data => {confirm: "Are you sure?"}} %>
+          </td>
+        </tr>
+
+      <% end %>
+    <% end %>
+
+  </table>
+</div>
+
+
+
+<div class="col-md-12">
+
+<h2>Categories</h2>
+
+  <table class="col-md-7 admin-data">
+
+    <% @categories.each do |category| %>
+
+      <% if @current_category != category %>
+        <% @current_category = category %>
+        <tr>
+          <th class="col-md-7" colspan="2"><%= @current_category[:name] %></th>
+        </tr>
+      <% end %>
+
+      <% if Book.where(:category_id => category.id).blank? %>
+        <tr>
+          <td class="col-md-7" colspan="2"><%= category.name %> hasn't books.</td>
+        </tr>
+
+      <% else %>
+        <% books = Book.where(:category_id => category).order(:author) %>
+
+        <% books.each do |book| %>
+          <tr>
+            <td class="col-md-4"><%= link_to book[:title], book_path(book) %></td>
+            <td class="col-md-3"><%= book[:author] %></td>
+          </tr>
+        <% end %>
+      <% end %>
+
+    <% end %>
+
+  </table>
+
+</div>
